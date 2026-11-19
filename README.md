@@ -26,16 +26,37 @@ This repository holds the code and the results behind the final report.
 
 ## Setup
 
-- [uv](https://docs.astral.sh/uv/) manages the environment (checked with uv 0.13.1).
+- [uv](https://docs.astral.sh/uv/) manages the environment (checked with uv 0.6.0, 0.13.1 and 0.13.9).
 - `uv sync` creates `.venv` with Python 3.12 and every dependency.
-  - PyBullet has no wheel for Python 3.12 and compiles from source, so a C++ compiler must be installed.
+  - PyBullet has no wheel for Python 3.12 and compiles from source, so a C++ compiler must be installed
+    (`sudo apt install build-essential` on Debian or Ubuntu; nothing else was needed on a bare Ubuntu 24.04).
   - The install took 35s on a 20-core machine; expect a few minutes on a laptop. The environment fills about
     6GB on Linux, most of it torch and its CUDA libraries.
 - torch comes from the CUDA 13.0 index on aarch64 Linux, the CUDA 12.6 index on x86_64 Linux and the CPU index
   elsewhere. No GPU is needed: the simulation is CPU-only, and the material heads fall back to the CPU.
 - Platforms: developed and run on Linux, x86-64 and aarch64. The lock file also resolves for Windows and for
   Apple Silicon under macOS 14 or later, but the code was not run there. Intel Macs have no torch wheel.
+  - macOS: PyBullet's bundled zlib redefines `fdopen`, which Xcode 16.3 and later reject, so its build is
+    expected to stop there. `CFLAGS="-Dfdopen=fdopen" uv sync` avoids the redefinition. This was checked by
+    forcing the header's macOS branch on Linux, not on a Mac.
+  - Windows: use WSL. The two shell scripts need bash.
+  - The Docker image below is the checked route on both.
 - `uv run pytest` runs the 62 tests in about 10s. They need no GPU and no data.
+
+## Docker
+
+A Linux environment for macOS and Windows, where the native install was not run.
+
+- `docker build -t matgrasp .` builds it: Ubuntu 24.04, a C++ compiler, uv and the locked packages. The build
+  took 3 minutes on a 20-core machine and the image fills 10GB.
+- `docker run --rm matgrasp` runs the tests.
+- `docker run --rm -it --shm-size=2g matgrasp bash` opens a shell in the repository for every command below.
+  - `--shm-size=2g`: the MobileNet fine-tune needs more shared memory than Docker's 64MB default.
+  - `-v "$PWD/data:/repo/data" -v "$PWD/results:/repo/results"` keeps the data and the results on the host.
+  - `--gpus all` passes an NVIDIA GPU through on a Linux host with the NVIDIA container toolkit (not checked).
+    Without it everything runs on the CPU.
+- Checked on linux/arm64, the platform Docker uses on Apple Silicon, with no GPU: the tests, the quick check
+  and the whole chain, which takes 36 minutes on the CPU.
 
 ## Quick check
 

@@ -48,5 +48,5 @@ if __name__ == "__main__":
     ap.add_argument("run"); ap.add_argument("--block", type=int, default=40); ap.add_argument("--mode", default="rank")
     a = ap.parse_args()
     md = build(a.run, a.block, a.mode)
-    (RESULTS / "sim" / a.run / f"blocks_{a.mode}.md").write_text(md)
+    (RESULTS / "sim" / a.run / f"blocks_{a.mode}.md").write_text(md, encoding="utf-8")
     print(md)

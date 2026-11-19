@@ -117,5 +117,5 @@ if __name__ == "__main__":
     RESULTS.mkdir(exist_ok=True)
     (RESULTS / "headroom_ycb.json").write_text(json.dumps(rows))
     md = f"# Scorer-only headroom on YCB meshes\n\n{a.trials} trials x {a.cands} candidates per object, {len(OBJECTS)} objects.\n\n## Pooled\n\n{summarise(rows)}\n\n## Per object\n\n{per_object(rows)}\n"
-    (RESULTS / "headroom_ycb.md").write_text(md)
+    (RESULTS / "headroom_ycb.md").write_text(md, encoding="utf-8")
     print(md)

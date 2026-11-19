@@ -121,7 +121,7 @@ if __name__ == "__main__":
     import sys
 
     notes_path = Path(sys.argv[1]) if len(sys.argv) > 1 else common.RESULTS_DIR / "notes.md"
-    notes = notes_path.read_text() if notes_path.exists() else ""
+    notes = notes_path.read_text(encoding="utf-8") if notes_path.exists() else ""
     out = common.RESULTS_DIR / "README.md"
-    out.write_text(build(notes))
+    out.write_text(build(notes), encoding="utf-8")
     print(f"wrote {out}")

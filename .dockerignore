@@ -1,0 +1,19 @@
+# Only what runs the code goes into the image; the environment and the data are created inside it.
+*
+!pyproject.toml
+!uv.lock
+!.python-version
+!pytest.ini
+!README.md
+!matgrasp
+!scripts
+!tests
+!results
+!fonts
+**/__pycache__
+results/sim/smoke
+**/*.part
+scripts/build_slides.py
+scripts/build_milestone.py
+scripts/deck_style.py
+scripts/dn

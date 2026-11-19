@@ -50,5 +50,5 @@ if __name__ == "__main__":
     a = ap.parse_args()
     md = build(a.runs, a.trials)
     if a.out:
-        Path(a.out).write_text(md)
+        Path(a.out).write_text(md, encoding="utf-8")
     print(md)

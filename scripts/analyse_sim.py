@@ -95,9 +95,10 @@ def main(runs):
     out.append(section("Planner fallbacks and force capping", "\n".join(lines)))
 
     report = "\n".join(out)
-    (RESULTS / "sim" / runs[0] / "report.md").write_text(report)
+    (RESULTS / "sim" / runs[0] / "report.md").write_text(report, encoding="utf-8")
     print(report)
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8")   # the tables carry Greek letters, whatever the system encoding
     main(sys.argv[1:] or ["core"])
