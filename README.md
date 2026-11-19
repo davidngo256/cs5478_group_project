@@ -79,7 +79,7 @@ Neither step needs a GPU or the model weights.
 - Meshes: downloaded on demand from the YCB server by `matgrasp.ycb.ensure_mesh`. The simulation runs need
   nothing else.
 - Photographs for the material heads: `uv run python -m matgrasp.heads.ycb_photos`.
-  - It streams nine archives and keeps 48 files of each, in about 6 minutes.
+  - It streams nine archives and keeps 48 files of each, in about 7 minutes.
   - The skillet lid has no archive on the YCB server: the command reports a 404 for it and moves on.
 - Skillet-lid renders, in place of its photographs: `uv run python -m matgrasp.heads.render_views`.
 - MINC-2500 subset for the MobileNet fine-tune: `uv run python -m matgrasp.heads.minc`.
