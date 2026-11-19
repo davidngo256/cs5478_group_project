@@ -11,6 +11,7 @@ from __future__ import annotations
 import re
 import tarfile
 import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -92,7 +93,8 @@ def fetch_ycb_photos(obj_id: str, retries: int = 3, verbose: bool = True) -> Pat
             return out
         except Exception as e:  # network hiccup: restart the stream
             print(f"[{obj_id}] attempt {attempt} failed after {time.time() - t0:.0f}s: {e!r}", flush=True)
-            if attempt == retries:
+            missing = isinstance(e, urllib.error.HTTPError) and e.code == 404   # no such archive: do not retry
+            if attempt == retries or missing:
                 raise
             time.sleep(10)
     return out
@@ -249,4 +251,11 @@ if __name__ == "__main__":
 
     ids = sys.argv[1:] or list(OBJECTS)
     for oid in ids:
-        fetch_ycb_photos(oid)
+        try:
+            fetch_ycb_photos(oid)
+        except urllib.error.HTTPError as e:
+            if e.code != 404:
+                raise
+            # 028_skillet_lid: the server holds no photographs of it, and its views are rendered instead
+            print(f"[{oid}] no photographs on the YCB server; render its views with "
+                  f"`python -m matgrasp.heads.render_views {oid}`", flush=True)

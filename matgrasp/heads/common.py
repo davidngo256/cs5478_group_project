@@ -159,7 +159,7 @@ def measure_latency_ms(fn, inputs: list, warmup: int = 5, n: int = 20, device: s
     assert len(inputs) >= 1
     dev = str(device or "cpu")
     sync = torch.cuda.synchronize if dev.startswith("cuda") else (lambda: None)
-    load1 = os.getloadavg()[0]
+    load1 = os.getloadavg()[0] if hasattr(os, "getloadavg") else float("nan")   # Windows has no load average
     with torch.no_grad():
         for i in range(warmup):
             fn(inputs[i % len(inputs)])

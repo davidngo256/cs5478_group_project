@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import io
+import os
+import shutil
 import tarfile
 import urllib.request
 from dataclasses import dataclass
@@ -12,6 +14,7 @@ import trimesh
 
 YCB_BASE = "http://ycb-benchmarks.s3-website-us-east-1.amazonaws.com/data"
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
+HULL_DIR = Path(__file__).resolve().parent / "hulls"   # the convex decompositions the study ran on
 
 
 @dataclass(frozen=True)
@@ -52,9 +55,18 @@ def ensure_mesh(obj_id: str, verbose: bool = True) -> Path:
         print(f"downloading {url}")
     with urllib.request.urlopen(url, timeout=120) as r:
         buf = io.BytesIO(r.read())
+    # Extract beside the target and move the files into place, the stl last: it marks the mesh as present, so
+    # an interrupted download or a second process never meets a half-written mesh that looks complete.
+    part = DATA_DIR / "ycb" / f".{obj_id}.{os.getpid()}.part"
     with tarfile.open(fileobj=buf, mode="r:gz") as tf:
         members = [m for m in tf.getmembers() if m.name.endswith(("nontextured.stl", "textured.obj", "textured.mtl", "texture_map.png"))]
-        tf.extractall(DATA_DIR / "ycb", members=members, filter="data")
+        tf.extractall(part, members=members, filter="data")
+    files = sorted((f for f in part.rglob("*") if f.is_file()), key=lambda f: f.name == stl.name)
+    for f in files:
+        dest = DATA_DIR / "ycb" / f.relative_to(part)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        os.replace(f, dest)
+    shutil.rmtree(part, ignore_errors=True)
     assert stl.exists(), f"extraction failed for {obj_id}"
     return d
 
@@ -78,7 +90,12 @@ def characteristic_radius(mesh: trimesh.Trimesh) -> float:
 
 
 def ensure_vhacd(obj_id: str, verbose: bool = True) -> Path:
-    """Convex decomposition for dynamic concave bodies in PyBullet (cached)."""
+    """Convex decomposition for dynamic concave bodies in PyBullet. The study objects use the hull files in
+    matgrasp/hulls: V-HACD returns slightly different hulls on another machine, and that moves individual
+    trials, so the hulls the study ran on ship with the code. Any other object is decomposed here and cached."""
+    shipped = HULL_DIR / f"{obj_id}.obj"
+    if shipped.exists():
+        return shipped
     d = ensure_mesh(obj_id, verbose=verbose)
     out = d / "vhacd.obj"
     if out.exists():
@@ -88,6 +105,10 @@ def ensure_vhacd(obj_id: str, verbose: bool = True) -> Path:
     src = d / "centred.obj"
     load_mesh(obj_id).export(src)
     log = d / "vhacd.log"
-    p.vhacd(str(src), str(out), str(log), resolution=1_000_000, maxNumVerticesPerCH=128, concavity=0.0002, minVolumePerCH=0.00001)
-    assert out.exists(), f"vhacd failed for {obj_id}"
+    # The decomposition takes seconds and writes as it goes: write under another name and rename, so that
+    # vhacd.obj exists only once it is complete (an interrupted run leaves nothing that looks cached).
+    part = d / f"vhacd.{os.getpid()}.part.obj"
+    p.vhacd(str(src), str(part), str(log), resolution=1_000_000, maxNumVerticesPerCH=128, concavity=0.0002, minVolumePerCH=0.00001)
+    assert part.exists(), f"vhacd failed for {obj_id}"
+    os.replace(part, out)
     return out

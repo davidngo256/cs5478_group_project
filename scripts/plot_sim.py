@@ -19,7 +19,6 @@ a hairline grid, no fill or frame of its own (the report and the decks add the h
 caption line). The PNGs are deterministic.
 """
 import json
-import os
 import sys
 from pathlib import Path
 
@@ -93,13 +92,18 @@ def colour(cell):
     raise KeyError(cell)
 
 
+FONT_DIR = Path(__file__).resolve().parents[1] / "fonts"   # the three IBM Plex faces the figures use (SIL OFL 1.1)
+
+
 def register_fonts():
-    """Register every IBM Plex file on the machine so the script works on a fresh font cache, then set the
+    """Register the IBM Plex faces in fonts/ and drop any copy installed on the machine, so the figures need no
+    font installed and do not change with the release of Plex a machine happens to have. Then set the
     defaults: mono for everything on the axes (Plex Mono has no Greek, so mu, epsilon and Delta fall back
     glyph by glyph to Plex Sans), ink and muted text, white surfaces, dpi 200."""
-    for path in font_manager.findSystemFonts():
-        if os.path.basename(path).startswith("IBMPlex"):
-            font_manager.fontManager.addfont(path)
+    manager = font_manager.fontManager
+    manager.ttflist = [f for f in manager.ttflist if f.name not in (SANS, MONO)]
+    for path in sorted(FONT_DIR.glob("IBMPlex*.ttf")):
+        manager.addfont(str(path))
     plt.rcParams.update({
         "font.family": [MONO, SANS], "font.weight": 400,
         "text.color": INK, "axes.labelcolor": MUTED,

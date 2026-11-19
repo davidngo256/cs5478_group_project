@@ -34,8 +34,8 @@ import numpy as np
 from .friction import MATERIAL_TABLE, MuDistribution, sample_true_mu
 from .planner import EPS_MIN_DEFAULT, FORCE_MIN_DEFAULT, SAFETY_DEFAULT, decide, gravity_wrench, score_candidates
 from .sampler import sample_candidates, transform_candidate
-from .sim import GraspSim, quat_to_mat
-from .ycb import OBJECTS, characteristic_radius, load_mesh
+from .sim import GraspSim, gripper_urdf, quat_to_mat
+from .ycb import OBJECTS, characteristic_radius, ensure_mesh, ensure_vhacd, load_mesh
 
 RESULTS = Path(__file__).resolve().parents[1] / "results"
 SWEEP_MUS = (0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.9)
@@ -229,21 +229,38 @@ def _work(args):
     return out
 
 
+def _prepare(obj_id: str) -> str:
+    """Fetch one object's mesh into data/ and make sure its convex hulls exist."""
+    try:
+        ensure_mesh(obj_id, verbose=False)
+        ensure_vhacd(obj_id, verbose=False)
+    except Exception as e:   # a download error cannot be pickled back to the parent: send its text instead
+        raise RuntimeError(f"could not prepare {obj_id}: {e!r}") from None
+    return obj_id
+
+
 def run_study(run_name: str, objects: list[str], n_trials: int, cfg: Config, workers: int | None = None,
               chunk: int = 5) -> Path:
     from multiprocessing import Pool
     workers = workers or default_workers()
     out_dir = RESULTS / "sim" / run_name
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "config.json").write_text(json.dumps(dict(asdict(cfg), objects=objects, n_trials=n_trials), indent=1, default=str))
     jobs = [(o, list(range(s, min(s + chunk, n_trials))), asdict(cfg)) for o in objects for s in range(0, n_trials, chunk)]
     path = out_dir / "rows.jsonl"
-    n = 0
-    with Pool(workers) as pool, open(path, "w") as f:
+    part = out_dir / "rows.jsonl.part"   # the rows collect here and replace rows.jsonl once the run is complete,
+    n = 0                                # so a run that fails or is interrupted keeps the previous rows
+    with Pool(workers) as pool, open(part, "w") as f:
+        # Several workers get trials of the same object. On a fresh data/ they would all download its mesh at
+        # once (and decompose it, for an object without a shipped hull file), and one would load a file another
+        # is still writing. Prepare each object once, one process per object, before the trials start.
+        gripper_urdf()
+        pool.map(_prepare, objects, chunksize=1)
         for rows in pool.imap_unordered(_work, jobs):
             for r in rows:
                 f.write(json.dumps(r, default=float) + "\n")
             n += len(rows)
             f.flush()
+    os.replace(part, path)
+    (out_dir / "config.json").write_text(json.dumps(dict(asdict(cfg), objects=objects, n_trials=n_trials), indent=1, default=str))
     print(f"wrote {n} rows to {path}")
     return path

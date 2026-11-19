@@ -12,6 +12,7 @@ y = closing axis. Finger pads are 16 mm wide, 8 mm thick, and the contact patch 
 """
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -82,7 +83,9 @@ def gripper_urdf() -> Path:
   </link>{finger("finger_l", -1)}{finger("finger_r", 1)}
 </robot>'''
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(urdf)
+    part = path.with_name(f"{path.name}.{os.getpid()}.part")   # written whole, then renamed into place
+    part.write_text(urdf)
+    os.replace(part, path)
     return path
 
 

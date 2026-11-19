@@ -23,6 +23,12 @@ __pycache__/
 # project data (YCB meshes/photos, MINC, model weights), fetched by matgrasp.ycb and matgrasp.heads.*
 data/
 
+# the README's quick-check run
+results/sim/smoke/
+
+# a simulation run in progress (renamed to rows.jsonl when it completes)
+*.part
+
 # macOS
 .DS_Store
 

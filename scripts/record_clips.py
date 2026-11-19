@@ -36,7 +36,7 @@ HOLD_MS = 1500                                     # the last frame, with the ou
 FOV, DIST, ELEVATION = 40.0, 0.32, 24.0            # camera: vertical field of view [deg], distance [m], above horizontal
 LABEL_PX, OUTCOME_PX = 34, 44                      # 20 px and 26 px once the 800 px frame sits 487 px wide on the slide
 INK = (14, 27, 42)
-FONTS = Path.home() / ".local" / "share" / "fonts" / "ibm-plex"
+FONTS = ROOT / "fonts"                               # the IBM Plex faces shipped with the repo
 CELLS = {"baseline": "grasp μ = 0.5 · force μ = 0.5", "squeeze": "grasp μ = 0.5 · force μ*",
          "select": "grasp μ* · force μ = 0.5", "oracle": "grasp μ* · force μ*"}
 _GREEK = re.compile(r"[Ͱ-Ͽ]+")
