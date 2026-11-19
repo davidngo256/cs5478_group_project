@@ -1,0 +1,195 @@
+[clip] 028_skillet_lid: 24 views, top1 rate 0.00, mean top1 rubber (true glass) in 0s
+[clip] 038_padlock: 24 views, top1 rate 0.54, mean top1 metal (true metal) in 2s
+[clip] 010_potted_meat_can: 24 views, top1 rate 0.00, mean top1 painted (true metal) in 2s
+[clip] 029_plate: 24 views, top1 rate 0.00, mean top1 rubber (true ceramic) in 2s
+[clip] 006_mustard_bottle: 24 views, top1 rate 0.25, mean top1 painted (true plastic) in 2s
+[clip] 021_bleach_cleanser: 24 views, top1 rate 0.12, mean top1 foam (true plastic) in 2s
+[clip] 003_cracker_box: 24 views, top1 rate 0.67, mean top1 paper (true paper) in 2s
+[clip] 004_sugar_box: 24 views, top1 rate 0.00, mean top1 painted (true paper) in 2s
+[clip] 061_foam_brick: 24 views, top1 rate 0.00, mean top1 rubber (true foam) in 2s
+[clip] 057_racquetball: 24 views, top1 rate 0.96, mean top1 rubber (true rubber) in 2s
+{
+ "head": "clip",
+ "params": 151277313,
+ "objects": [
+  "028_skillet_lid",
+  "038_padlock",
+  "010_potted_meat_can",
+  "029_plate",
+  "006_mustard_bottle",
+  "021_bleach_cleanser",
+  "003_cracker_box",
+  "004_sugar_box",
+  "061_foam_brick",
+  "057_racquetball"
+ ],
+ "machine": {
+  "cpu_count": 4,
+  "torch_threads": 2,
+  "torch": "2.14.0+cu126",
+  "device": "cuda",
+  "device_name": "NVIDIA L4"
+ },
+ "latency_ms_per_image": {
+  "mean": 13.341681399992922,
+  "std": 1.5311822346941104,
+  "min": 9.862811999937549,
+  "n": 20,
+  "device": "cuda",
+  "torch_threads": 2,
+  "loadavg_1min_at_start": 1.1611328125
+ },
+ "model": "ViT-B-32",
+ "pretrained": "laion2b_s34b_b79k",
+ "logit_scale": 100.0,
+ "prompts": {
+  "glass": "a photo of an object made of glass",
+  "metal": "a photo of an object made of bare metal",
+  "ceramic": "a photo of an object made of ceramic",
+  "plastic": "a photo of an object made of plastic",
+  "painted": "a photo of a painted object",
+  "wood": "a photo of an object made of wood",
+  "paper": "a photo of an object made of cardboard or paper",
+  "leather": "a photo of an object made of leather",
+  "fabric": "a photo of an object made of fabric",
+  "foam": "a photo of an object made of foam",
+  "rubber": "a photo of an object made of rubber"
+ },
+ "input": "object crop (mask bbox +10%), CLIP preprocess 224"
+}
+{
+ "image_level": 0.2824074074074074,
+ "object_level": 0.3333333333333333,
+ "n_images": 216,
+ "n_objects": 9,
+ "excluded": {
+  "028_skillet_lid": "render"
+ },
+ "excluded_render_objects": [
+  "028_skillet_lid"
+ ],
+ "per_object": {
+  "028_skillet_lid": {
+   "pred": "rubber",
+   "true": "glass",
+   "votes": {
+    "rubber": 23,
+    "metal": 1
+   },
+   "mean_top1": "rubber",
+   "n_images": 24,
+   "source": "render"
+  },
+  "038_padlock": {
+   "pred": "metal",
+   "true": "metal",
+   "votes": {
+    "metal": 13,
+    "plastic": 10,
+    "fabric": 1
+   },
+   "mean_top1": "metal",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "010_potted_meat_can": {
+   "pred": "painted",
+   "true": "metal",
+   "votes": {
+    "painted": 24
+   },
+   "mean_top1": "painted",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "029_plate": {
+   "pred": "rubber",
+   "true": "ceramic",
+   "votes": {
+    "rubber": 21,
+    "glass": 1,
+    "painted": 2
+   },
+   "mean_top1": "rubber",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "006_mustard_bottle": {
+   "pred": "painted",
+   "true": "plastic",
+   "votes": {
+    "painted": 15,
+    "plastic": 6,
+    "paper": 1,
+    "glass": 2
+   },
+   "mean_top1": "painted",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "021_bleach_cleanser": {
+   "pred": "foam",
+   "true": "plastic",
+   "votes": {
+    "foam": 17,
+    "painted": 1,
+    "plastic": 3,
+    "glass": 2,
+    "rubber": 1
+   },
+   "mean_top1": "foam",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "003_cracker_box": {
+   "pred": "paper",
+   "true": "paper",
+   "votes": {
+    "paper": 16,
+    "foam": 1,
+    "plastic": 1,
+    "rubber": 1,
+    "metal": 1,
+    "ceramic": 1,
+    "painted": 3
+   },
+   "mean_top1": "paper",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "004_sugar_box": {
+   "pred": "painted",
+   "true": "paper",
+   "votes": {
+    "painted": 16,
+    "plastic": 2,
+    "foam": 4,
+    "ceramic": 2
+   },
+   "mean_top1": "painted",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "061_foam_brick": {
+   "pred": "rubber",
+   "true": "foam",
+   "votes": {
+    "rubber": 24
+   },
+   "mean_top1": "rubber",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "057_racquetball": {
+   "pred": "rubber",
+   "true": "rubber",
+   "votes": {
+    "rubber": 23,
+    "painted": 1
+   },
+   "mean_top1": "rubber",
+   "n_images": 24,
+   "source": "photo"
+  }
+ }
+}

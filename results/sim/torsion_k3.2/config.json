@@ -1,0 +1,31 @@
+{
+ "n_cands": 40,
+ "q": 0.1,
+ "quantiles": [],
+ "eps_min": 0.001,
+ "safety": 1.5,
+ "force_min": 3.0,
+ "cap_min": 8.0,
+ "cap_max": 40.0,
+ "cap_factor": 4.0,
+ "sweep": false,
+ "probe": true,
+ "heads": {},
+ "widen": 1.5,
+ "min_feasible": 8,
+ "max_batches": 12,
+ "gamma_scale": 3.2,
+ "objects": [
+  "028_skillet_lid",
+  "038_padlock",
+  "010_potted_meat_can",
+  "029_plate",
+  "006_mustard_bottle",
+  "021_bleach_cleanser",
+  "003_cracker_box",
+  "004_sugar_box",
+  "061_foam_brick",
+  "057_racquetball"
+ ],
+ "n_trials": 120
+}

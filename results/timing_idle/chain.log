@@ -1,0 +1,45 @@
+2026-10-15T13:10:08Z machine: 20 CPUs (Cortex-A725+Cortex-X925), GPU NVIDIA GB10, uptime up 1 day, 7 hours, 30 minutes, Python 3.12.15
+2026-10-15T13:10:09Z other GPU processes: 
+2026-10-15T13:10:09Z settling 90 s
+2026-10-15T13:11:39Z START mobilenet_train | load 0.25 18.98 46.66 | .venv/bin/python -m matgrasp.heads.mobilenet train
+2026-10-15T13:12:20Z END   mobilenet_train | rc=0 | 41 s | load 1.93 17.07 44.85
+2026-10-15T13:12:20Z settling 60 s
+2026-10-15T13:13:20Z START eval_dms46 | load 0.82 13.99 42.05 | .venv/bin/python -m matgrasp.heads.dms46
+2026-10-15T13:13:34Z END   eval_dms46 | rc=0 | 14 s | load 0.86 13.36 41.39
+2026-10-15T13:13:34Z START eval_clip | load 0.86 13.36 41.39 | .venv/bin/python -m matgrasp.heads.clip_head
+2026-10-15T13:13:46Z END   eval_clip | rc=0 | 12 s | load 1.44 13.06 40.99
+2026-10-15T13:13:46Z START eval_mobilenet | load 1.44 13.06 40.99 | .venv/bin/python -m matgrasp.heads.mobilenet
+2026-10-15T13:13:56Z END   eval_mobilenet | rc=0 | 10 s | load 1.46 12.68 40.57
+2026-10-15T13:13:56Z settling 45 s
+2026-10-15T13:14:41Z START latency_dms46_1 | load 0.69 10.91 38.65 | .venv/bin/python -m matgrasp.heads.dms46 latency
+2026-10-15T13:14:44Z END   latency_dms46_1 | rc=0 | 3 s | load 0.71 10.74 38.45
+2026-10-15T13:14:44Z START latency_dms46_2 | load 0.71 10.74 38.45 | .venv/bin/python -m matgrasp.heads.dms46 latency
+2026-10-15T13:14:47Z END   latency_dms46_2 | rc=0 | 3 s | load 0.71 10.74 38.45
+2026-10-15T13:14:47Z START latency_dms46_3 | load 0.71 10.74 38.45 | .venv/bin/python -m matgrasp.heads.dms46 latency
+2026-10-15T13:14:50Z END   latency_dms46_3 | rc=0 | 3 s | load 2.26 10.90 38.35
+2026-10-15T13:14:50Z settling 45 s
+2026-10-15T13:15:35Z START latency_clip_head_1 | load 1.10 9.39 36.54 | .venv/bin/python -m matgrasp.heads.clip_head latency
+2026-10-15T13:15:39Z END   latency_clip_head_1 | rc=0 | 4 s | load 1.10 9.25 36.34
+2026-10-15T13:15:39Z START latency_clip_head_2 | load 1.10 9.25 36.34 | .venv/bin/python -m matgrasp.heads.clip_head latency
+2026-10-15T13:15:44Z END   latency_clip_head_2 | rc=0 | 5 s | load 1.09 9.11 36.15
+2026-10-15T13:15:44Z START latency_clip_head_3 | load 1.09 9.11 36.15 | .venv/bin/python -m matgrasp.heads.clip_head latency
+2026-10-15T13:15:48Z END   latency_clip_head_3 | rc=0 | 4 s | load 1.16 8.99 35.97
+2026-10-15T13:15:48Z settling 45 s
+2026-10-15T13:16:33Z START latency_mobilenet_1 | load 0.67 7.76 34.28 | .venv/bin/python -m matgrasp.heads.mobilenet latency
+2026-10-15T13:16:36Z END   latency_mobilenet_1 | rc=0 | 3 s | load 0.67 7.76 34.28
+2026-10-15T13:16:36Z START latency_mobilenet_2 | load 0.67 7.76 34.28 | .venv/bin/python -m matgrasp.heads.mobilenet latency
+2026-10-15T13:16:39Z END   latency_mobilenet_2 | rc=0 | 3 s | load 0.70 7.65 34.10
+2026-10-15T13:16:39Z START latency_mobilenet_3 | load 0.70 7.65 34.10 | .venv/bin/python -m matgrasp.heads.mobilenet latency
+2026-10-15T13:16:42Z END   latency_mobilenet_3 | rc=0 | 3 s | load 0.72 7.54 33.92
+2026-10-15T13:16:42Z settling 45 s
+2026-10-15T13:17:27Z START headroom | load 0.45 6.51 32.32 | .venv/bin/python scripts/headroom_ycb.py --trials 30 --cands 40
+2026-10-15T13:18:00Z END   headroom | rc=0 | 33 s | load 2.30 6.42 31.47
+2026-10-15T13:18:00Z START core120 | load 2.30 6.42 31.47 | .venv/bin/python scripts/run_study.py core --trials 120 --name core120
+2026-10-15T13:23:42Z END   core120 | rc=0 | 342 s | load 18.56 15.72 27.93
+2026-10-15T13:23:42Z START heads120 | load 18.56 15.72 27.93 | .venv/bin/python scripts/run_study.py heads --trials 120 --name heads120
+2026-10-15T13:29:12Z END   heads120 | rc=0 | 330 s | load 20.04 19.14 25.86
+2026-10-15T13:29:12Z START torsion_k2.0 | load 20.04 19.14 25.86 | .venv/bin/python scripts/run_study.py lean --trials 40 --gamma-scale 2.0 --name torsion_k2.0
+2026-10-15T13:30:20Z END   torsion_k2.0 | rc=0 | 68 s | load 18.23 18.88 25.28
+2026-10-15T13:30:20Z START torsion_k3.2 | load 18.23 18.88 25.28 | .venv/bin/python scripts/run_study.py lean --trials 40 --gamma-scale 3.2 --name torsion_k3.2
+2026-10-15T13:31:28Z END   torsion_k3.2 | rc=0 | 68 s | load 17.38 18.74 24.78
+2026-10-15T13:31:28Z CHAIN_DONE

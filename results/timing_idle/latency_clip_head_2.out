@@ -1,0 +1,3 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{"mean": 10.941162498784252, "std": 1.0814967899508108, "min": 8.925704009016044, "n": 20, "device": "cuda", "torch_threads": 20, "loadavg_1min_at_start": 1.08740234375}

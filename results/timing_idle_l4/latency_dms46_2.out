@@ -1,0 +1,3 @@
+/home/dngo256/working/code/cs5478/.venv/lib/python3.13/site-packages/torch/jit/_serialization.py:176: FutureWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+  warnings.warn(
+{"mean": 74.15838824998673, "std": 24.76559815855796, "min": 26.953233999847725, "n": 20, "device": "cuda", "torch_threads": 2, "loadavg_1min_at_start": 0.6630859375}

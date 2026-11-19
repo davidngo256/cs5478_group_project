@@ -1,0 +1,3 @@
+pybullet build time: Oct 15 2026 20:12:06
+heads: {'clip': ['003_cracker_box', '004_sugar_box', '006_mustard_bottle', '010_potted_meat_can', '021_bleach_cleanser', '028_skillet_lid', '029_plate', '038_padlock', '057_racquetball', '061_foam_brick'], 'dms46': ['003_cracker_box', '004_sugar_box', '006_mustard_bottle', '010_potted_meat_can', '021_bleach_cleanser', '028_skillet_lid', '029_plate', '038_padlock', '057_racquetball', '061_foam_brick'], 'mobilenet': ['003_cracker_box', '004_sugar_box', '006_mustard_bottle', '010_potted_meat_can', '021_bleach_cleanser', '028_skillet_lid', '029_plate', '038_padlock', '057_racquetball', '061_foam_brick']}
+wrote 31952 rows to /home/david/working/cs5478_group_project/results/sim/heads120/rows.jsonl

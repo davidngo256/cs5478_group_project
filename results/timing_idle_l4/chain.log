@@ -1,0 +1,40 @@
+2026-10-01T01:43:00Z machine: 4 vCPU (Intel(R) Xeon(R) CPU @ 2.20GHz), NVIDIA L4, uptime up 19 minutes
+2026-10-01T01:43:00Z other GPU processes: 
+2026-10-01T01:43:00Z settling 90 s before the first stage
+2026-10-01T01:44:30Z START mobilenet_train | load 0.21 0.28 0.19 | ../.venv/bin/python -m matgrasp.heads.mobilenet train
+2026-10-01T01:46:53Z END   mobilenet_train | rc=0 | 143 s | load 4.16 1.87 0.80
+2026-10-01T01:47:53Z START eval_dms46 | load 1.53 1.53 0.75 | ../.venv/bin/python -m matgrasp.heads.dms46
+2026-10-01T01:48:33Z END   eval_dms46 | rc=0 | 40 s | load 1.27 1.46 0.76
+2026-10-01T01:48:33Z START eval_clip | load 1.27 1.46 0.76 | ../.venv/bin/python -m matgrasp.heads.clip_head
+2026-10-01T01:49:04Z END   eval_clip | rc=0 | 31 s | load 1.15 1.41 0.77
+2026-10-01T01:49:04Z START eval_mobilenet | load 1.15 1.41 0.77 | ../.venv/bin/python -m matgrasp.heads.mobilenet
+2026-10-01T01:49:28Z END   eval_mobilenet | rc=0 | 24 s | load 1.27 1.42 0.78
+2026-10-01T01:50:28Z START latency_dms46_1 | load 0.46 1.16 0.73 | ../.venv/bin/python -m matgrasp.heads.dms46 latency
+2026-10-01T01:50:35Z END   latency_dms46_1 | rc=0 | 7 s | load 0.55 1.15 0.73
+2026-10-01T01:50:35Z START latency_dms46_2 | load 0.55 1.15 0.73 | ../.venv/bin/python -m matgrasp.heads.dms46 latency
+2026-10-01T01:50:42Z END   latency_dms46_2 | rc=0 | 7 s | load 0.66 1.16 0.74
+2026-10-01T01:50:42Z START latency_dms46_3 | load 0.66 1.16 0.74 | ../.venv/bin/python -m matgrasp.heads.dms46 latency
+2026-10-01T01:50:49Z END   latency_dms46_3 | rc=0 | 7 s | load 0.72 1.16 0.74
+2026-10-01T01:51:34Z START latency_clip_head_1 | load 0.40 1.01 0.71 | ../.venv/bin/python -m matgrasp.heads.clip_head latency
+2026-10-01T01:51:44Z END   latency_clip_head_1 | rc=0 | 10 s | load 0.42 0.99 0.71
+2026-10-01T01:51:44Z START latency_clip_head_2 | load 0.42 0.99 0.71 | ../.venv/bin/python -m matgrasp.heads.clip_head latency
+2026-10-01T01:51:54Z END   latency_clip_head_2 | rc=0 | 10 s | load 0.47 0.99 0.71
+2026-10-01T01:51:54Z START latency_clip_head_3 | load 0.47 0.99 0.71 | ../.venv/bin/python -m matgrasp.heads.clip_head latency
+2026-10-01T01:52:03Z END   latency_clip_head_3 | rc=0 | 9 s | load 0.77 1.04 0.73
+2026-10-01T01:52:48Z START latency_mobilenet_1 | load 0.36 0.89 0.70 | ../.venv/bin/python -m matgrasp.heads.mobilenet latency
+2026-10-01T01:52:55Z END   latency_mobilenet_1 | rc=0 | 7 s | load 0.46 0.90 0.70
+2026-10-01T01:52:55Z START latency_mobilenet_2 | load 0.46 0.90 0.70 | ../.venv/bin/python -m matgrasp.heads.mobilenet latency
+2026-10-01T01:53:02Z END   latency_mobilenet_2 | rc=0 | 7 s | load 0.50 0.90 0.70
+2026-10-01T01:53:02Z START latency_mobilenet_3 | load 0.50 0.90 0.70 | ../.venv/bin/python -m matgrasp.heads.mobilenet latency
+2026-10-01T01:53:08Z END   latency_mobilenet_3 | rc=0 | 6 s | load 0.54 0.90 0.70
+2026-10-01T01:53:53Z START headroom | load 0.55 0.85 0.70 | ../.venv/bin/python scripts/headroom_ycb.py --trials 30 --cands 40
+2026-10-01T01:57:30Z END   headroom | rc=0 | 217 s | load 6.01 3.31 1.70
+2026-10-01T01:57:30Z START core120 | load 6.01 3.31 1.70 | ../.venv/bin/python scripts/run_study.py core --trials 120 --name core120
+2026-10-01T03:58:59Z END   core120 | rc=0 | 7289 s | load 3.85 4.13 4.16
+2026-10-01T03:58:59Z START heads120 | load 3.85 4.13 4.16 | ../.venv/bin/python scripts/run_study.py heads --trials 120 --name heads120
+2026-10-01T05:51:05Z END   heads120 | rc=0 | 6726 s | load 3.51 3.95 4.04
+2026-10-01T05:51:05Z START torsion_k2.0 | load 3.51 3.95 4.04 | ../.venv/bin/python scripts/run_study.py lean --trials 40 --gamma-scale 2.0 --name torsion_k2.0
+2026-10-01T06:10:40Z END   torsion_k2.0 | rc=0 | 1175 s | load 3.72 4.05 4.07
+2026-10-01T06:10:40Z START torsion_k3.2 | load 3.72 4.05 4.07 | ../.venv/bin/python scripts/run_study.py lean --trials 40 --gamma-scale 3.2 --name torsion_k3.2
+2026-10-01T06:29:54Z END   torsion_k3.2 | rc=0 | 1154 s | load 3.77 4.08 4.08
+2026-10-01T06:29:54Z CHAIN_DONE

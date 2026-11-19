@@ -1,0 +1,315 @@
+{
+ "head": "mobilenet",
+ "params": 1528106,
+ "objects": [
+  "028_skillet_lid",
+  "038_padlock",
+  "010_potted_meat_can",
+  "029_plate",
+  "006_mustard_bottle",
+  "021_bleach_cleanser",
+  "003_cracker_box",
+  "004_sugar_box",
+  "061_foam_brick",
+  "057_racquetball"
+ ],
+ "machine": {
+  "cpu_count": 20,
+  "torch_threads": 20,
+  "torch": "2.14.1+cu130",
+  "device": "cuda",
+  "device_name": "NVIDIA GB10"
+ },
+ "ycb": {
+  "image_level": 0.3101851851851852,
+  "object_level": 0.2222222222222222,
+  "n_images": 216,
+  "n_objects": 9,
+  "excluded": {
+   "028_skillet_lid": "render"
+  },
+  "excluded_render_objects": [
+   "028_skillet_lid"
+  ],
+  "per_object": {
+   "028_skillet_lid": {
+    "pred": "glass",
+    "true": "glass",
+    "votes": {
+     "metal": 11,
+     "leather": 1,
+     "glass": 12
+    },
+    "mean_top1": "metal",
+    "n_images": 24,
+    "source": "render"
+   },
+   "038_padlock": {
+    "pred": "glass",
+    "true": "metal",
+    "votes": {
+     "glass": 20,
+     "ceramic": 1,
+     "plastic": 1,
+     "paper": 2
+    },
+    "mean_top1": "glass",
+    "n_images": 24,
+    "source": "photo"
+   },
+   "010_potted_meat_can": {
+    "pred": "paper",
+    "true": "metal",
+    "votes": {
+     "paper": 13,
+     "ceramic": 4,
+     "metal": 6,
+     "glass": 1
+    },
+    "mean_top1": "paper",
+    "n_images": 24,
+    "source": "photo"
+   },
+   "029_plate": {
+    "pred": "plastic",
+    "true": "ceramic",
+    "votes": {
+     "wood": 6,
+     "ceramic": 6,
+     "plastic": 12
+    },
+    "mean_top1": "plastic",
+    "n_images": 24,
+    "source": "photo"
+   },
+   "006_mustard_bottle": {
+    "pred": "paper",
+    "true": "plastic",
+    "votes": {
+     "paper": 9,
+     "plastic": 9,
+     "painted": 2,
+     "metal": 3,
+     "ceramic": 1
+    },
+    "mean_top1": "paper",
+    "n_images": 24,
+    "source": "photo"
+   },
+   "021_bleach_cleanser": {
+    "pred": "paper",
+    "true": "plastic",
+    "votes": {
+     "paper": 10,
+     "painted": 3,
+     "plastic": 8,
+     "glass": 1,
+     "ceramic": 2
+    },
+    "mean_top1": "paper",
+    "n_images": 24,
+    "source": "photo"
+   },
+   "003_cracker_box": {
+    "pred": "paper",
+    "true": "paper",
+    "votes": {
+     "paper": 17,
+     "glass": 6,
+     "wood": 1
+    },
+    "mean_top1": "paper",
+    "n_images": 24,
+    "source": "photo"
+   },
+   "004_sugar_box": {
+    "pred": "paper",
+    "true": "paper",
+    "votes": {
+     "paper": 21,
+     "glass": 3
+    },
+    "mean_top1": "paper",
+    "n_images": 24,
+    "source": "photo"
+   },
+   "061_foam_brick": {
+    "pred": "glass",
+    "true": "foam",
+    "votes": {
+     "leather": 5,
+     "ceramic": 6,
+     "glass": 11,
+     "metal": 1,
+     "wood": 1
+    },
+    "mean_top1": "glass",
+    "n_images": 24,
+    "source": "photo"
+   },
+   "057_racquetball": {
+    "pred": "ceramic",
+    "true": "rubber",
+    "votes": {
+     "plastic": 8,
+     "ceramic": 9,
+     "glass": 7
+    },
+    "mean_top1": "ceramic",
+    "n_images": 24,
+    "source": "photo"
+   }
+  }
+ },
+ "latency_ms_per_image": {
+  "mean": 8.431395499792416,
+  "std": 0.7987952996396478,
+  "min": 6.132287002401426,
+  "n": 20,
+  "device": "cuda",
+  "torch_threads": 20,
+  "loadavg_1min_at_start": 0.697265625
+ },
+ "input": "object crop (mask bbox +10%), resize 256 / centre crop 224",
+ "temperature": 1.3992647403473462,
+ "minc_classes": [
+  "ceramic",
+  "fabric",
+  "glass",
+  "leather",
+  "metal",
+  "painted",
+  "paper",
+  "plastic",
+  "polishedstone",
+  "wood"
+ ],
+ "minc_test_accuracy": 0.714,
+ "minc_test_accuracy_table_classes": 0.7236,
+ "ece_before": 0.0710096482840151,
+ "ece_after": 0.02874002314816244,
+ "ece_validation_before": 0.08604934612050985,
+ "ece_validation_after": 0.04141149336446521,
+ "confusion_matrix_table": {
+  "glass": {
+   "glass": 191,
+   "metal": 18,
+   "ceramic": 12,
+   "plastic": 7,
+   "painted": 6,
+   "wood": 5,
+   "paper": 7,
+   "leather": 1,
+   "fabric": 3
+  },
+  "metal": {
+   "glass": 18,
+   "metal": 144,
+   "ceramic": 35,
+   "plastic": 21,
+   "painted": 7,
+   "wood": 16,
+   "paper": 4,
+   "leather": 2,
+   "fabric": 3
+  },
+  "ceramic": {
+   "glass": 8,
+   "metal": 28,
+   "ceramic": 410,
+   "plastic": 21,
+   "painted": 4,
+   "wood": 5,
+   "paper": 12,
+   "leather": 5,
+   "fabric": 7
+  },
+  "plastic": {
+   "glass": 10,
+   "metal": 19,
+   "ceramic": 22,
+   "plastic": 158,
+   "painted": 7,
+   "wood": 2,
+   "paper": 20,
+   "leather": 2,
+   "fabric": 10
+  },
+  "painted": {
+   "glass": 16,
+   "metal": 7,
+   "ceramic": 8,
+   "plastic": 7,
+   "painted": 200,
+   "wood": 5,
+   "paper": 4,
+   "leather": 0,
+   "fabric": 3
+  },
+  "wood": {
+   "glass": 18,
+   "metal": 13,
+   "ceramic": 19,
+   "plastic": 1,
+   "painted": 9,
+   "wood": 165,
+   "paper": 14,
+   "leather": 7,
+   "fabric": 4
+  },
+  "paper": {
+   "glass": 4,
+   "metal": 11,
+   "ceramic": 23,
+   "plastic": 19,
+   "painted": 2,
+   "wood": 5,
+   "paper": 173,
+   "leather": 5,
+   "fabric": 8
+  },
+  "leather": {
+   "glass": 1,
+   "metal": 8,
+   "ceramic": 7,
+   "plastic": 3,
+   "painted": 1,
+   "wood": 6,
+   "paper": 1,
+   "leather": 194,
+   "fabric": 29
+  },
+  "fabric": {
+   "glass": 7,
+   "metal": 5,
+   "ceramic": 9,
+   "plastic": 13,
+   "painted": 5,
+   "wood": 5,
+   "paper": 8,
+   "leather": 24,
+   "fabric": 174
+  }
+ },
+ "minc_training": {
+  "train_images": 6000,
+  "epochs": 8,
+  "batch": 64,
+  "lr": 0.0006,
+  "train_time_s": 39.05328845977783,
+  "device": "cuda",
+  "device_name": "NVIDIA GB10"
+ },
+ "minc_test_per_class_accuracy": {
+  "ceramic": 0.72,
+  "fabric": 0.696,
+  "glass": 0.768,
+  "leather": 0.776,
+  "metal": 0.592,
+  "painted": 0.804,
+  "paper": 0.692,
+  "plastic": 0.636,
+  "polishedstone": 0.788,
+  "wood": 0.668
+ }
+}

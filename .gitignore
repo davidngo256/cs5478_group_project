@@ -1,0 +1,46 @@
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# ... but the timing chain's stage outputs are small text files worth keeping
+!results/timing_idle*/*.out
+!results/timing_idle*/*.log
+
+# project data (YCB meshes/photos, MINC, model weights), fetched by matgrasp.ycb and matgrasp.heads.*
+data/
+
+# macOS
+.DS_Store
+
+# Design and writing guides (symlinks to Google Drive, machine-specific, not tracked)
+design_language
+writing_style
+
+# Working material that is not needed to run the code and stays on the author's machine: the course
+# hand-outs, the project notes, the report source and the submitted files, the deck builders and
+# their template
+course_materials/
+PROJECT_NOTES.md
+report/
+deliverables/
+scripts/build_slides.py
+scripts/build_milestone.py
+scripts/deck_style.py
+scripts/dn/
+
+# Office lock files (a deliverable open in PowerPoint)
+~$*

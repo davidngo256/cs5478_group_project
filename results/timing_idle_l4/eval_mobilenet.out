@@ -1,0 +1,225 @@
+[mobilenet] 028_skillet_lid: 24 views, top1 rate 0.50, mean top1 metal (true glass) in 1s
+[mobilenet] 038_padlock: 24 views, top1 rate 0.00, mean top1 glass (true metal) in 2s
+[mobilenet] 010_potted_meat_can: 24 views, top1 rate 0.25, mean top1 paper (true metal) in 2s
+[mobilenet] 029_plate: 24 views, top1 rate 0.50, mean top1 ceramic (true ceramic) in 2s
+[mobilenet] 006_mustard_bottle: 24 views, top1 rate 0.38, mean top1 paper (true plastic) in 2s
+[mobilenet] 021_bleach_cleanser: 24 views, top1 rate 0.33, mean top1 paper (true plastic) in 2s
+[mobilenet] 003_cracker_box: 24 views, top1 rate 0.79, mean top1 paper (true paper) in 2s
+[mobilenet] 004_sugar_box: 24 views, top1 rate 0.88, mean top1 paper (true paper) in 2s
+[mobilenet] 061_foam_brick: 24 views, top1 rate 0.00, mean top1 glass (true foam) in 2s
+[mobilenet] 057_racquetball: 24 views, top1 rate 0.00, mean top1 ceramic (true rubber) in 2s
+{
+ "head": "mobilenet",
+ "params": 1528106,
+ "objects": [
+  "028_skillet_lid",
+  "038_padlock",
+  "010_potted_meat_can",
+  "029_plate",
+  "006_mustard_bottle",
+  "021_bleach_cleanser",
+  "003_cracker_box",
+  "004_sugar_box",
+  "061_foam_brick",
+  "057_racquetball"
+ ],
+ "machine": {
+  "cpu_count": 4,
+  "torch_threads": 2,
+  "torch": "2.14.0+cu126",
+  "device": "cuda",
+  "device_name": "NVIDIA L4"
+ },
+ "latency_ms_per_image": {
+  "mean": 12.889975899997808,
+  "std": 1.398850324093791,
+  "min": 9.329174999948009,
+  "n": 20,
+  "device": "cuda",
+  "torch_threads": 2,
+  "loadavg_1min_at_start": 1.265625
+ },
+ "input": "object crop (mask bbox +10%), resize 256 / centre crop 224",
+ "temperature": 1.3854012133218685,
+ "minc_classes": [
+  "ceramic",
+  "fabric",
+  "glass",
+  "leather",
+  "metal",
+  "painted",
+  "paper",
+  "plastic",
+  "polishedstone",
+  "wood"
+ ],
+ "minc_test_accuracy": 0.712,
+ "minc_test_accuracy_table_classes": 0.7212,
+ "ece_before": 0.07863097342175544,
+ "ece_after": 0.026701781439490205,
+ "ece_validation_before": 0.08413178100378305,
+ "ece_validation_after": 0.034998654660586076,
+ "minc_training": {
+  "train_images": 6000,
+  "epochs": 8,
+  "batch": 64,
+  "lr": 0.0006,
+  "train_time_s": 136.2052345275879,
+  "device": "cuda",
+  "device_name": "NVIDIA L4"
+ },
+ "minc_test_per_class_accuracy": {
+  "ceramic": 0.732,
+  "fabric": 0.688,
+  "glass": 0.78,
+  "leather": 0.764,
+  "metal": 0.584,
+  "painted": 0.812,
+  "paper": 0.7,
+  "plastic": 0.608,
+  "polishedstone": 0.792,
+  "wood": 0.66
+ }
+}
+{
+ "image_level": 0.3472222222222222,
+ "object_level": 0.3333333333333333,
+ "n_images": 216,
+ "n_objects": 9,
+ "excluded": {
+  "028_skillet_lid": "render"
+ },
+ "excluded_render_objects": [
+  "028_skillet_lid"
+ ],
+ "per_object": {
+  "028_skillet_lid": {
+   "pred": "glass",
+   "true": "glass",
+   "votes": {
+    "metal": 11,
+    "leather": 1,
+    "glass": 12
+   },
+   "mean_top1": "metal",
+   "n_images": 24,
+   "source": "render"
+  },
+  "038_padlock": {
+   "pred": "glass",
+   "true": "metal",
+   "votes": {
+    "glass": 19,
+    "paper": 3,
+    "fabric": 2
+   },
+   "mean_top1": "glass",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "010_potted_meat_can": {
+   "pred": "paper",
+   "true": "metal",
+   "votes": {
+    "paper": 13,
+    "fabric": 1,
+    "metal": 6,
+    "glass": 1,
+    "ceramic": 3
+   },
+   "mean_top1": "paper",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "029_plate": {
+   "pred": "ceramic",
+   "true": "ceramic",
+   "votes": {
+    "wood": 6,
+    "ceramic": 12,
+    "plastic": 6
+   },
+   "mean_top1": "ceramic",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "006_mustard_bottle": {
+   "pred": "paper",
+   "true": "plastic",
+   "votes": {
+    "paper": 9,
+    "plastic": 9,
+    "painted": 2,
+    "metal": 3,
+    "ceramic": 1
+   },
+   "mean_top1": "paper",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "021_bleach_cleanser": {
+   "pred": "paper",
+   "true": "plastic",
+   "votes": {
+    "paper": 10,
+    "painted": 2,
+    "plastic": 8,
+    "glass": 1,
+    "metal": 1,
+    "ceramic": 1,
+    "leather": 1
+   },
+   "mean_top1": "paper",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "003_cracker_box": {
+   "pred": "paper",
+   "true": "paper",
+   "votes": {
+    "paper": 19,
+    "glass": 4,
+    "wood": 1
+   },
+   "mean_top1": "paper",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "004_sugar_box": {
+   "pred": "paper",
+   "true": "paper",
+   "votes": {
+    "paper": 21,
+    "glass": 3
+   },
+   "mean_top1": "paper",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "061_foam_brick": {
+   "pred": "glass",
+   "true": "foam",
+   "votes": {
+    "leather": 7,
+    "glass": 10,
+    "ceramic": 6,
+    "metal": 1
+   },
+   "mean_top1": "glass",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "057_racquetball": {
+   "pred": "ceramic",
+   "true": "rubber",
+   "votes": {
+    "plastic": 7,
+    "ceramic": 10,
+    "glass": 7
+   },
+   "mean_top1": "ceramic",
+   "n_images": 24,
+   "source": "photo"
+  }
+ }
+}

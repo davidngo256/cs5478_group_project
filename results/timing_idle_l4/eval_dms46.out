@@ -1,0 +1,176 @@
+/home/dngo256/working/code/cs5478/.venv/lib/python3.13/site-packages/torch/jit/_serialization.py:176: FutureWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+  warnings.warn(
+[dms46] 028_skillet_lid: 24 views, top1 rate 0.00, mean top1 metal (true glass) in 2s
+[dms46] 038_padlock: 24 views, top1 rate 0.04, mean top1 painted (true metal) in 4s
+[dms46] 010_potted_meat_can: 24 views, top1 rate 0.00, mean top1 paper (true metal) in 4s
+[dms46] 029_plate: 24 views, top1 rate 0.17, mean top1 painted (true ceramic) in 3s
+[dms46] 006_mustard_bottle: 24 views, top1 rate 0.25, mean top1 painted (true plastic) in 3s
+[dms46] 021_bleach_cleanser: 24 views, top1 rate 0.04, mean top1 paper (true plastic) in 3s
+[dms46] 003_cracker_box: 24 views, top1 rate 1.00, mean top1 paper (true paper) in 3s
+[dms46] 004_sugar_box: 24 views, top1 rate 1.00, mean top1 paper (true paper) in 3s
+[dms46] 061_foam_brick: 24 views, top1 rate 0.00, mean top1 painted (true foam) in 4s
+[dms46] 057_racquetball: 24 views, top1 rate 0.00, mean top1 painted (true rubber) in 4s
+{
+ "head": "dms46",
+ "params": 46729198,
+ "objects": [
+  "028_skillet_lid",
+  "038_padlock",
+  "010_potted_meat_can",
+  "029_plate",
+  "006_mustard_bottle",
+  "021_bleach_cleanser",
+  "003_cracker_box",
+  "004_sugar_box",
+  "061_foam_brick",
+  "057_racquetball"
+ ],
+ "machine": {
+  "cpu_count": 4,
+  "torch_threads": 2,
+  "torch": "2.14.0+cu126",
+  "device": "cuda",
+  "device_name": "NVIDIA L4"
+ },
+ "latency_ms_per_image": {
+  "mean": 70.76426779999565,
+  "std": 24.216136897174067,
+  "min": 25.74491699988357,
+  "n": 20,
+  "device": "cuda",
+  "torch_threads": 2,
+  "loadavg_1min_at_start": 1.26806640625
+ },
+ "input": "object crop (mask bbox +10%), longer side 512",
+ "mapping": "DMS46_TO_TABLE, unmapped DMS classes dropped"
+}
+{
+ "image_level": 0.2777777777777778,
+ "object_level": 0.2222222222222222,
+ "n_images": 216,
+ "n_objects": 9,
+ "excluded": {
+  "028_skillet_lid": "render"
+ },
+ "excluded_render_objects": [
+  "028_skillet_lid"
+ ],
+ "per_object": {
+  "028_skillet_lid": {
+   "pred": "metal",
+   "true": "glass",
+   "votes": {
+    "metal": 19,
+    "plastic": 5
+   },
+   "mean_top1": "metal",
+   "n_images": 24,
+   "source": "render"
+  },
+  "038_padlock": {
+   "pred": "painted",
+   "true": "metal",
+   "votes": {
+    "paper": 10,
+    "plastic": 1,
+    "painted": 12,
+    "metal": 1
+   },
+   "mean_top1": "painted",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "010_potted_meat_can": {
+   "pred": "paper",
+   "true": "metal",
+   "votes": {
+    "paper": 13,
+    "painted": 11
+   },
+   "mean_top1": "paper",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "029_plate": {
+   "pred": "painted",
+   "true": "ceramic",
+   "votes": {
+    "glass": 5,
+    "ceramic": 4,
+    "painted": 15
+   },
+   "mean_top1": "painted",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "006_mustard_bottle": {
+   "pred": "painted",
+   "true": "plastic",
+   "votes": {
+    "plastic": 6,
+    "painted": 15,
+    "paper": 3
+   },
+   "mean_top1": "painted",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "021_bleach_cleanser": {
+   "pred": "paper",
+   "true": "plastic",
+   "votes": {
+    "paper": 13,
+    "glass": 3,
+    "painted": 7,
+    "plastic": 1
+   },
+   "mean_top1": "paper",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "003_cracker_box": {
+   "pred": "paper",
+   "true": "paper",
+   "votes": {
+    "paper": 24
+   },
+   "mean_top1": "paper",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "004_sugar_box": {
+   "pred": "paper",
+   "true": "paper",
+   "votes": {
+    "paper": 24
+   },
+   "mean_top1": "paper",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "061_foam_brick": {
+   "pred": "painted",
+   "true": "foam",
+   "votes": {
+    "glass": 1,
+    "paper": 5,
+    "plastic": 7,
+    "painted": 11
+   },
+   "mean_top1": "painted",
+   "n_images": 24,
+   "source": "photo"
+  },
+  "057_racquetball": {
+   "pred": "painted",
+   "true": "rubber",
+   "votes": {
+    "fabric": 8,
+    "painted": 16
+   },
+   "mean_top1": "painted",
+   "n_images": 24,
+   "source": "photo"
+  }
+ }
+}
